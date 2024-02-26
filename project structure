@@ -1,0 +1,11 @@
+the project structure:
+/myproject
+    /static
+        /css
+            styles.css
+    /templates
+        layout.html
+        index.html
+        login.html
+        register.html
+    app.py
