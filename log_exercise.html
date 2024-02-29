@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block title %}Log Exercise{% endblock %}
+
+{% block content %}
+    <h1>Log Exercise</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <p>{{ form.description.label }} {{ form.description() }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
