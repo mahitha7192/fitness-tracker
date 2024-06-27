@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>track your calories!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center">Calorie Finder and Tracker</h2>
+
+        <div class="row mt-4">
+            <!-- Calorie Finder -->
+            <div class="col-md-6">
+                <h3>Calorie Finder</h3>
+                <form id="calorieFinderForm">
+                    <div class="form-group">
+                        <label for="foodItem">Enter Food Item</label>
+                        <input type="text" class="form-control" id="foodItem" placeholder="e.g., Apple, Banana">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Find Calories</button>
+                </form>
+                <div id="calorieResult" class="mt-3">
+                    <!-- Display calorie result here -->
+                </div>
+            </div>
+
+            <!-- Calorie Tracker -->
+            <div class="col-md-6">
+                <h3>Calorie Tracker</h3>
+                <form id="calorieTrackerForm">
+                    <div class="form-group">
+                        <label for="foodName">Food Name</label>
+                        <input type="text" class="form-control" id="foodName" placeholder="e.g., Apple, Banana">
+                    </div>
+                    <div class="form-group">
+                        <label for="calorieAmount">Calories</label>
+                        <input type="number" class="form-control" id="calorieAmount" placeholder="e.g., 95">
+                    </div>
+                    <button type="submit" class="btn btn-success">Add to Tracker</button>
+                </form>
+                <div id="trackerResult" class="mt-3">
+                    <h5>Total Calories Consumed Today: <span id="totalCalories">0</span></h5>
+                    <ul id="calorieList" class="list-group">
+                        <!-- Display tracked calories here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dummy calorie data
+        const calorieData = {
+            'Apple': 52,
+            'Banana': 89,
+            'Orange': 47,
+            'Broccoli': 55,
+            'Chicken Breast': 165,
+            'Egg': 78,
+            'Rice': 130,
+            'Almonds': 579
+        };
+
+        document.getElementById('calorieFinderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let foodItem = document.getElementById('foodItem').value;
+            let calorieResult = calorieData[foodItem] || 'Calorie information not found';
+            document.getElementById('calorieResult').innerHTML = `
+                <h6>Calories in ${foodItem}:</h6>
+                <p>${calorieResult}</p>
+            `;
+        });
+
+        let totalCalories = 0;
+        document.getElementById('calorieTrackerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let foodName = document.getElementById('foodName').value;
+            let calorieAmount = parseInt(document.getElementById('calorieAmount').value);
+
+            if (!isNaN(calorieAmount)) {
+                totalCalories += calorieAmount;
+                document.getElementById('totalCalories').innerText = totalCalories;
+
+                let listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.innerText = `${foodName}: ${calorieAmount} calories`;
+
+                document.getElementById('calorieList').appendChild(listItem);
+            }
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

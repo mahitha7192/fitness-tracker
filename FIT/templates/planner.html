@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Planner and Calendar</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Calendar</h3>
+            
+            <div id="calendar"></div>
+        </div>
+      
+
+
+        <div class="col-md-6">
+            <h3>Daily Planner</h3>
+            <form id="plannerForm">
+                <div class="form-group">
+                    <label for="dateInput">Date</label>
+                    <input type="date" class="form-control" id="dateInput" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskInput">Task</label>
+                    <textarea class="form-control" id="taskInput" rows="3" placeholder="Enter your task for the day" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </form>
+            <div id="taskList" class="mt-4">
+                <!-- Display tasks here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+
+<script>
+    $(document).ready(function() {
+        // Initialize the calendar
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultView: 'month',
+            editable: true,
+            events: [] // You can add your events here
+        });
+    });
+</script>
+{% endblock %}

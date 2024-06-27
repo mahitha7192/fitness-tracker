@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Exercise Guide</h2>
+            <p>Welcome to your personalized exercise guide. Below you'll find exercises focused on different muscle groups.</p>
+
+            <h3>Workout by Muscle Group</h3>
+            <div>
+                <p>
+ Workouts by muscle group target specific areas of the body, allowing you to focus on strengthening and toning particular muscles. This approach is beneficial for developing balanced strength, improving muscle definition, and preventing overuse injuries by varying the exercises performed. Below are detailed workouts for different muscle groups, including exercises, their difficulty levels, the amount of time required, necessary equipment, and instructions.
+                </p>
+            </div>
+
+            <h3 class="mt-4">Exercise Videos</h3>
+            <div class="embed-responsive embed-responsive-16by9 mb-4">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/example_video_id" allowfullscreen></iframe>
+            </div>
+            <div class="embed-responsive embed-responsive-16by9 mb-4">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/example_video_id2" allowfullscreen></iframe>
+            </div>
+            <div class="embed-responsive embed-responsive-16by9 mb-4">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/example_video_id3" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h3>Focus on Your Muscles</h3>
+            <form id="muscleFocusForm">
+                <div class="form-group">
+                    <label for="muscleGroup">Select Muscle Group</label>
+                    <select class="form-control" id="muscleGroup">
+                        <option value="chest">Chest</option>
+                        <option value="back">Back</option>
+                        <option value="arms">Arms</option>
+                        <option value="legs">Legs</option>
+                        <option value="shoulders">Shoulders</option>
+                        <option value="core">Core</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Get Workout</button>
+            </form>
+
+            <div id="workoutResult" class="mt-4">
+                <!-- Display workout based on selected muscle group here -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('muscleFocusForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get selected muscle group
+        let muscleGroup = document.getElementById('muscleGroup').value;
+
+        // Dummy workouts for each muscle group with details
+        let workouts = {
+            'chest': {
+                name: 'Push-ups',
+                difficulty: 'Beginner',
+                time: '15 minutes',
+                equipment: 'None',
+                instructions: 'Place your hands on the ground, shoulder-width apart. Lower your body until your chest nearly touches the floor. Push yourself back up.'
+            },
+            'back': {
+                name: 'Pull-ups',
+                difficulty: 'Intermediate',
+                time: '20 minutes',
+                equipment: 'Pull-up bar',
+                instructions: 'Grab the bar with a grip slightly wider than shoulder-width. Pull yourself up until your chin is above the bar. Lower yourself back down.'
+            },
+            'arms': {
+                name: 'Bicep Curls',
+                difficulty: 'Beginner',
+                time: '15 minutes',
+                equipment: 'Dumbbells',
+                instructions: 'Hold a dumbbell in each hand. Keep your elbows close to your torso. Curl the weights while contracting your biceps.'
+            },
+            'legs': {
+                name: 'Squats',
+                difficulty: 'Intermediate',
+                time: '20 minutes',
+                equipment: 'None',
+                instructions: 'Stand with feet shoulder-width apart. Lower your body by bending your knees and hips. Return to the starting position.'
+            },
+            'shoulders': {
+                name: 'Shoulder Press',
+                difficulty: 'Intermediate',
+                time: '20 minutes',
+                equipment: 'Dumbbells',
+                instructions: 'Hold a dumbbell in each hand at shoulder height. Press the weights overhead until your arms are fully extended. Lower back to shoulder height.'
+            },
+            'core': {
+                name: 'Planks',
+                difficulty: 'Beginner',
+                time: '10 minutes',
+                equipment: 'None',
+                instructions: 'Lie face down on the ground. Lift your body onto your forearms and toes. Hold your body in a straight line for the duration.'
+            }
+        };
+
+        // Display workout
+        let workout = workouts[muscleGroup];
+        document.getElementById('workoutResult').innerHTML = `
+            <h5>${workout.name}</h5>
+            <p><strong>Difficulty:</strong> ${workout.difficulty}</p>
+            <p><strong>Time:</strong> ${workout.time}</p>
+            <p><strong>Equipment:</strong> ${workout.equipment}</p>
+            <p><strong>Instructions:</strong> ${workout.instructions}</p>
+        `;
+    });
+
+    function showWorkout(muscleGroup) {
+        let muscleGroupSelect = document.getElementById('muscleGroup');
+        muscleGroupSelect.value = muscleGroup;
+        let event = new Event('submit');
+        document.getElementById('muscleFocusForm').dispatchEvent(event);
+    }
+</script>
+{% endblock %}

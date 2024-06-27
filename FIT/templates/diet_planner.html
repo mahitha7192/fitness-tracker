@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Planner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center">Diet Planner</h2>
+        <p class="text-center lead">Plan your diet with personalized recommendations and important dietary tips!</p>
+
+        <div class="row mt-4">
+            <!-- Diet Types -->
+            <div class="col-md-6">
+                <h3>Diet Types</h3>
+                <div class="accordion" id="dietTypesAccordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Balanced Diet
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#dietTypesAccordion">
+                            <div class="card-body">
+                                A balanced diet includes a variety of foods in the right proportions to provide the nutrients your body needs.
+                                <ul>
+                                    <li>Fruits and vegetables</li>
+                                    <li>Whole grains</li>
+                                    <li>Proteins (meat, fish, beans)</li>
+                                    <li>Dairy products</li>
+                                    <li>Limited amounts of fats and sugars</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Keto Diet
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#dietTypesAccordion">
+                            <div class="card-body">
+                                The Keto diet focuses on high fat, moderate protein, and low carbohydrate intake to promote fat burning.
+                                <ul>
+                                    <li>Meat, fatty fish, eggs</li>
+                                    <li>Low-carb vegetables</li>
+                                    <li>High-fat dairy</li>
+                                    <li>Nuts and seeds</li>
+                                    <li>Healthy fats (olive oil, coconut oil)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Vegan Diet
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#dietTypesAccordion">
+                            <div class="card-body">
+                                The Vegan diet excludes all animal products and focuses on plant-based foods.
+                                <ul>
+                                    <li>Fruits and vegetables</li>
+                                    <li>Whole grains</li>
+                                    <li>Legumes</li>
+                                    <li>Nuts and seeds</li>
+                                    <li>Plant-based proteins (tofu, tempeh)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diet Recommendations -->
+            <div class="col-md-6">
+                <h3>Diet Recommendations</h3>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <h5>Breakfast</h5>
+                        <p>Start your day with a nutritious breakfast to boost metabolism and energy levels.</p>
+                        <ul>
+                            <li>Oatmeal with fruits and nuts</li>
+                            <li>Whole-grain toast with avocado</li>
+                            <li>Scrambled eggs with vegetables</li>
+                        </ul>
+                    </div>
+                    <div class="list-group-item">
+                        <h5>Lunch</h5>
+                        <p>A balanced lunch helps to sustain energy throughout the day.</p>
+                        <ul>
+                            <li>Grilled chicken salad with mixed greens</li>
+                            <li>Quinoa bowl with roasted vegetables</li>
+                            <li>Whole-grain wrap with lean protein and veggies</li>
+                        </ul>
+                    </div>
+                    <div class="list-group-item">
+                        <h5>Dinner</h5>
+                        <p>A lighter dinner promotes better sleep and digestion.</p>
+                        <ul>
+                            <li>Baked salmon with steamed broccoli</li>
+                            <li>Lentil soup with a side salad</li>
+                            <li>Stir-fried tofu with mixed vegetables</li>
+                        </ul>
+                    </div>
+                    <div class="list-group-item">
+                        <h5>Snacks</h5>
+                        <p>Healthy snacks help to keep hunger at bay and maintain energy levels.</p>
+                        <ul>
+                            <li>Fresh fruit or vegetable sticks</li>
+                            <li>Greek yogurt with berries</li>
+                            <li>Handful of nuts or seeds</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h3 class="text-center">Custom Diet Planner</h3>
+                <form id="customDietForm">
+                    <div class="form-group">
+                        <label for="breakfast">Breakfast</label>
+                        <input type="text" class="form-control" id="breakfast" placeholder="Enter your breakfast">
+                    </div>
+                    <div class="form-group">
+                        <label for="lunch">Lunch</label>
+                        <input type="text" class="form-control" id="lunch" placeholder="Enter your lunch">
+                    </div>
+                    <div class="form-group">
+                        <label for="dinner">Dinner</label>
+                        <input type="text" class="form-control" id="dinner" placeholder="Enter your dinner">
+                    </div>
+                    <div class="form-group">
+                        <label for="snacks">Snacks</label>
+                        <input type="text" class="form-control" id="snacks" placeholder="Enter your snacks">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Diet Plan</button>
+                </form>
+
+                <div id="customDietPlan" class="mt-4">
+                    <h4>Your Custom Diet Plan</h4>
+                    <p><strong>Breakfast:</strong> <span id="displayBreakfast"></span></p>
+                    <p><strong>Lunch:</strong> <span id="displayLunch"></span></p>
+                    <p><strong>Dinner:</strong> <span id="displayDinner"></span></p>
+                    <p><strong>Snacks:</strong> <span id="displaySnacks"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('customDietForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get user inputs
+            let breakfast = document.getElementById('breakfast').value;
+            let lunch = document.getElementById('lunch').value;
+            let dinner = document.getElementById('dinner').value;
+            let snacks = document.getElementById('snacks').value;
+
+            // Display custom diet plan
+            document.getElementById('displayBreakfast').innerText = breakfast;
+            document.getElementById('displayLunch').innerText = lunch;
+            document.getElementById('displayDinner').innerText = dinner;
+            document.getElementById('displaySnacks').innerText = snacks;
+        });
+    </script>
+</body>
+</html>

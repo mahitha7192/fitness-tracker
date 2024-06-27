@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">User Dashboard</h1>
+        <p class="lead text-muted">Welcome to your dashboard!</p>
+        <p>
+            <a href="{{ url_for('diet_planner') }}" class="btn btn-primary my-2">Diet Planner</a>
+            <a href="{{ url_for('water_intake') }}" class="btn btn-primary my-2">Water Intake</a>
+            <a href="{{ url_for('food_calorie') }}" class="btn btn-primary my-2">Calorie Finder</a>
+            <a href="{{ url_for('exercise') }}" class="btn btn-primary my-2">Exercises</a>
+        </p>
+    </div>
+</section>
+{% endblock %}

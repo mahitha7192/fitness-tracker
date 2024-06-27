@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Importance of Water</h2>
+            <p>Water is essential for maintaining bodily functions and overall health. It helps in regulating body temperature, transporting nutrients, and eliminating waste. Staying hydrated is crucial for optimal physical and mental performance.</p>
+
+            <h3>Recommended Water Intake</h3>
+            <p>The amount of water needed varies based on factors like age, gender, physical activity, and climate. Generally:</p>
+            <ul>
+                <li>Men are recommended to drink about 3.7 liters (or about 13 cups) of water per day.</li>
+                <li>Women are recommended to drink about 2.7 liters (or about 9 cups) of water per day.</li>
+            </ul>
+
+            <p>However, individual needs may vary. Below is a general guideline based on age:</p>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Age Group</th>
+                        <th>Recommended Daily Water Intake (Liters)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Children (4-8 years)</td>
+                        <td>1.2 - 1.8 liters</td>
+                    </tr>
+                    <tr>
+                        <td>Children (9-13 years)</td>
+                        <td>1.6 - 2.1 liters</td>
+                    </tr>
+                    <tr>
+                        <td>Teens (14-18 years)</td>
+                        <td>2.1 - 3.3 liters</td>
+                    </tr>
+                    <tr>
+                        <td>Adults (19 years and older)</td>
+                        <td>2.7 - 3.7 liters (men) / 2.2 - 2.7 liters (women)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Benefits of Drinking Water</h3>
+            <p>Drinking adequate water is beneficial for:</p>
+            <ul>
+                <li>Improving metabolism and aiding in weight management.</li>
+                <li>Enhancing physical performance and reducing fatigue.</li>
+                <li>Supporting digestion and kidney function.</li>
+                <li>Keeping skin healthy and preventing dehydration.</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Calculate Your Water Intake</h5>
+                    <form id="waterIntakeForm">
+                        <div class="form-group">
+                            <label for="weightInput">Enter Your Weight (kg)</label>
+                            <input type="number" class="form-control" id="weightInput" placeholder="Enter your weight">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </form>
+                    <div id="result">
+                        <!-- Display calculated water intake result here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('waterIntakeForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get user input (weight in kg)
+        let weight = parseFloat(document.getElementById('weightInput').value);
+
+        // Validate input (optional)
+        if (isNaN(weight) || weight <= 0) {
+            alert('Please enter a valid weight.');
+            return;
+        }
+
+        // Calculate recommended water intake (example formula)
+        // Example formula: 30ml of water per kg of body weight
+        let waterIntake = weight * 0.03;
+
+        // Display result
+        document.getElementById('result').innerHTML = `
+            <h6 class="mt-3">Recommended Daily Water Intake:</h6>
+            <p>${waterIntake.toFixed(2)} liters (${(waterIntake * 1000).toFixed(0)} ml) per day</p>
+        `;
+    });
+</script>
+{% endblock %}

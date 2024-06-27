@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Daily Progress Summary</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>User Information</h3>
+            <p><strong>Age:</strong> {{ user_data.age }}</p>
+            <p><strong>Chosen Diet:</strong> {{ user_data.chosen_diet }}</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Today's Progress</h3>
+            <p><strong>Water Intake:</strong> {{ user_data.water_intake }}</p>
+            <p><strong>Current Workout:</strong> {{ user_data.current_workout }}</p>
+            <p><strong>Affirmation:</strong> {{ user_data.affirmation }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
